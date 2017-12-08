@@ -14,15 +14,37 @@ std::string recoverMessage(
                            std::vector<unsigned char> encrypted) {
     
     std::vector<unsigned char> result = first_block;
-//    std::vector<unsigned char> temp;
+    
+    std::vector<unsigned char> key;
     
 //    std::cout << "Test: \n" << encrypted[2] <<std::endl;
     std::string test_str(encrypted.begin(), encrypted.end());
     std::cout << "Test: \n" << test_str <<std::endl;
 
+    //Ci = K + (Mi + Ci-1), --> K = Ci + (Mi + Ci-1)
+        key[0] = (result[0] ^ encrypted[0]) ^ encrypted[12];    // should be result[i] = encryptied[i-12] ^ decrypt(encrypted[i]);
+        key[1] = (result[1] ^ encrypted[1]) ^ encrypted[13];
+        key[2] = (result[2] ^ encrypted[2]) ^ encrypted[14];
+        key[3] = (result[3] ^ encrypted[3]) ^ encrypted[15];
+        key[4] = (result[4] ^ encrypted[4]) ^ encrypted[16];
+        key[5] = (result[5] ^ encrypted[5]) ^ encrypted[17];
+        key[6] = (result[6] ^ encrypted[6]) ^ encrypted[18];
+        key[7] = (result[7] ^ encrypted[7]) ^ encrypted[19];
+        key[8] = (result[8] ^ encrypted[8]) ^ encrypted[20];
+        key[9] = (result[9] ^ encrypted[9]) ^ encrypted[21];
+        key[10] = (result[10] ^ encrypted[10]) ^ encrypted[22];
+        key[11] = (result[11] ^ encrypted[11]) ^ encrypted[23];
+//        key[12] = (result[12] ^ encrypted[12]) ^ encrypted[i+12];
+    
+        
+        //        temp.push_back(encrypted[i]);  // appends element i from the vector encrypted to temp.
+    
+    
+    std::string key_str(key.begin(), key.end());
+    std::cout << "Key: \n" << key_str <<std::endl;
     
     for(int i = 12; i<encrypted.size(); i = i + 12){
-        result[i] = result[i-12] ^ encrypted[i];    // should be result[i] = result[i-12] ^ decrypt(encrypted[i]);
+        result[i] = result[i-12] ^ encrypted[i];    // should be result[i] = encryptied[i-12] ^ decrypt(encrypted[i]);
         result[i+1] = result[i-11] ^ encrypted[i+1];
         result[i+2] = result[i-10] ^ encrypted[i+2];
         result[i+3] = result[i-9] ^ encrypted[i+3];
@@ -34,7 +56,7 @@ std::string recoverMessage(
         result[i+9] = result[i-3] ^ encrypted[i+9];
         result[i+10] = result[i-2] ^ encrypted[i+10];
         result[i+11] = result[i-1] ^ encrypted[i+11];
-        result[i+12] = result[i] ^ encrypted[i+12];
+//        result[i+12] = result[i] ^ encrypted[i+12];
 
         
 //        temp.push_back(encrypted[i]);  // appends element i from the vector encrypted to temp.
