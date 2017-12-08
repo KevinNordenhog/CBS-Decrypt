@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C33509DD1FDB273F00EBBF17 /* CBS Decrypt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CBS Decrypt"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C33509DD1FDB273F00EBBF17 /* CBC Decrypt */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CBC Decrypt"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C33509E01FDB273F00EBBF17 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,7 +41,7 @@
 		C33509D41FDB273F00EBBF17 = {
 			isa = PBXGroup;
 			children = (
-				C33509DF1FDB273F00EBBF17 /* CBS Decrypt */,
+				C33509DF1FDB273F00EBBF17 /* CBC Decrypt */,
 				C33509DE1FDB273F00EBBF17 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,25 +49,25 @@
 		C33509DE1FDB273F00EBBF17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C33509DD1FDB273F00EBBF17 /* CBS Decrypt */,
+				C33509DD1FDB273F00EBBF17 /* CBC Decrypt */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C33509DF1FDB273F00EBBF17 /* CBS Decrypt */ = {
+		C33509DF1FDB273F00EBBF17 /* CBC Decrypt */ = {
 			isa = PBXGroup;
 			children = (
 				C33509E01FDB273F00EBBF17 /* main.cpp */,
 			);
-			path = "CBS Decrypt";
+			path = "CBC Decrypt";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C33509DC1FDB273F00EBBF17 /* CBS Decrypt */ = {
+		C33509DC1FDB273F00EBBF17 /* CBC Decrypt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C33509E41FDB273F00EBBF17 /* Build configuration list for PBXNativeTarget "CBS Decrypt" */;
+			buildConfigurationList = C33509E41FDB273F00EBBF17 /* Build configuration list for PBXNativeTarget "CBC Decrypt" */;
 			buildPhases = (
 				C33509D91FDB273F00EBBF17 /* Sources */,
 				C33509DA1FDB273F00EBBF17 /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = "CBS Decrypt";
+			name = "CBC Decrypt";
 			productName = "CBS Decrypt";
-			productReference = C33509DD1FDB273F00EBBF17 /* CBS Decrypt */;
+			productReference = C33509DD1FDB273F00EBBF17 /* CBC Decrypt */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C33509D81FDB273F00EBBF17 /* Build configuration list for PBXProject "CBS Decrypt" */;
+			buildConfigurationList = C33509D81FDB273F00EBBF17 /* Build configuration list for PBXProject "CBC Decrypt" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -109,7 +109,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C33509DC1FDB273F00EBBF17 /* CBS Decrypt */,
+				C33509DC1FDB273F00EBBF17 /* CBC Decrypt */,
 			);
 		};
 /* End PBXProject section */
@@ -248,7 +248,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C33509D81FDB273F00EBBF17 /* Build configuration list for PBXProject "CBS Decrypt" */ = {
+		C33509D81FDB273F00EBBF17 /* Build configuration list for PBXProject "CBC Decrypt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C33509E21FDB273F00EBBF17 /* Debug */,
@@ -257,7 +257,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C33509E41FDB273F00EBBF17 /* Build configuration list for PBXNativeTarget "CBS Decrypt" */ = {
+		C33509E41FDB273F00EBBF17 /* Build configuration list for PBXNativeTarget "CBC Decrypt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C33509E51FDB273F00EBBF17 /* Debug */,
