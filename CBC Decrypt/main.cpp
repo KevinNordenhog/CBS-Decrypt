@@ -16,22 +16,8 @@ std::string recoverMessage(
     std::vector<unsigned char> result = first_block;
     
     std::vector<unsigned char> key;
-    
-//    std::cout << "Test: \n" << encrypted[2] <<std::endl;
-//    std::string test_str(encrypted.begin(), encrypted.end());
-//    std::cout << "Test: \n" << test_str <<std::endl;
-    
-    
-//    std::cout << "result[0]: \n" << result[0] <<std::endl;
-//    std::cout << "encrypted[0]: \n" << encrypted[0] <<std::endl;
-//    std::cout << "result[1] ^ encrypted[1]: \n" << (result[1] ^ encrypted[1]) <<std::endl;
-//
-//    std::cout << "encrypted[12]: \n" << encrypted[12] <<std::endl;
-//    std::cout << "(result[0] ^ encrypted[0]) ^ encrypted[12]: \n" << ((result[0] ^ encrypted[0]) ^ encrypted[12]) <<std::endl;
 
     //Ci = K + (Mi + Ci-1), --> K = Ci + (Mi + Ci-1)
-
-
     key.push_back((result[0] ^ encrypted[0]) ^ encrypted[12]);
     key.push_back((result[1] ^ encrypted[1]) ^ encrypted[13]);
     key.push_back((result[2] ^ encrypted[2]) ^ encrypted[14]);
@@ -44,36 +30,28 @@ std::string recoverMessage(
     key.push_back((result[9] ^ encrypted[9]) ^ encrypted[21]);
     key.push_back((result[10] ^ encrypted[10]) ^ encrypted[22]);
     key.push_back((result[11] ^ encrypted[11]) ^ encrypted[23]);
-//        key[12] = (result[12] ^ encrypted[12]) ^ encrypted[i+12];
-    
-        
-//        temp.push_back(encrypted[i]);  // appends element i from the vector encrypted to temp.
-    
     
     std::string key_str(key.begin(), key.end());
     std::cout << "Key: \n" << key_str <<std::endl;
     
-    std::cout << "encrypted.size(): \n" << encrypted.size() <<std::endl;
-    
     // Ci = K + (Mi + Ci-1) --> Mi = (Ci + K) + Ci-1
-    for(int i = 12; i<encrypted.size(); i = i + 12){
-        result.push_back((encrypted[i+12] ^ key[0]) ^ encrypted[i]);
-        result.push_back((encrypted[i+13] ^ key[1]) ^ encrypted[i+1]);
-        result.push_back((encrypted[i+14] ^ key[2]) ^ encrypted[i+2]);
-        result.push_back((encrypted[i+15] ^ key[3]) ^ encrypted[i+3]);
-        result.push_back((encrypted[i+16] ^ key[4]) ^ encrypted[i+4]);
-        result.push_back((encrypted[i+17] ^ key[5]) ^ encrypted[i+5]);
-        result.push_back((encrypted[i+18] ^ key[6]) ^ encrypted[i+6]);
-        result.push_back((encrypted[i+19] ^ key[7]) ^ encrypted[i+7]);
-        result.push_back((encrypted[i+20] ^ key[8]) ^ encrypted[i+8]);
-        result.push_back((encrypted[i+21] ^ key[9]) ^ encrypted[i+9]);
-        result.push_back((encrypted[i+22] ^ key[10]) ^ encrypted[i+10]);
-        result.push_back((encrypted[i+23] ^ key[11]) ^ encrypted[i+11]);
-    }
-//    for(int i = 12; i<encrypted.size(); i++){
-//        result.push_back((encrypted[(i % 12) + 12] ^ key[i % 12]) ^ encrypted[i]);
+//    for(int i = 12; i<encrypted.size(); i = i + 12){
+//        result.push_back((encrypted[i+12] ^ key[0]) ^ encrypted[i]);
+//        result.push_back((encrypted[i+13] ^ key[1]) ^ encrypted[i+1]);
+//        result.push_back((encrypted[i+14] ^ key[2]) ^ encrypted[i+2]);
+//        result.push_back((encrypted[i+15] ^ key[3]) ^ encrypted[i+3]);
+//        result.push_back((encrypted[i+16] ^ key[4]) ^ encrypted[i+4]);
+//        result.push_back((encrypted[i+17] ^ key[5]) ^ encrypted[i+5]);
+//        result.push_back((encrypted[i+18] ^ key[6]) ^ encrypted[i+6]);
+//        result.push_back((encrypted[i+19] ^ key[7]) ^ encrypted[i+7]);
+//        result.push_back((encrypted[i+20] ^ key[8]) ^ encrypted[i+8]);
+//        result.push_back((encrypted[i+21] ^ key[9]) ^ encrypted[i+9]);
+//        result.push_back((encrypted[i+22] ^ key[10]) ^ encrypted[i+10]);
+//        result.push_back((encrypted[i+23] ^ key[11]) ^ encrypted[i+11]);
 //    }
-    
+    for(int i = 12; i<encrypted.size(); i++){
+        result.push_back((encrypted[(i + 12)] ^ key[i % 12]) ^ encrypted[i]);
+    }
     
     // Work on the arrays (vectors) of bytes (unsigned chars).
     // In the end, construct a string as follows:
