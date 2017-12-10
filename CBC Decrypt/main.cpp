@@ -18,71 +18,61 @@ std::string recoverMessage(
     std::vector<unsigned char> key;
     
 //    std::cout << "Test: \n" << encrypted[2] <<std::endl;
-    std::string test_str(encrypted.begin(), encrypted.end());
-    std::cout << "Test: \n" << test_str <<std::endl;
+//    std::string test_str(encrypted.begin(), encrypted.end());
+//    std::cout << "Test: \n" << test_str <<std::endl;
+    
+    
+//    std::cout << "result[0]: \n" << result[0] <<std::endl;
+//    std::cout << "encrypted[0]: \n" << encrypted[0] <<std::endl;
+//    std::cout << "result[1] ^ encrypted[1]: \n" << (result[1] ^ encrypted[1]) <<std::endl;
+//
+//    std::cout << "encrypted[12]: \n" << encrypted[12] <<std::endl;
+//    std::cout << "(result[0] ^ encrypted[0]) ^ encrypted[12]: \n" << ((result[0] ^ encrypted[0]) ^ encrypted[12]) <<std::endl;
 
     //Ci = K + (Mi + Ci-1), --> K = Ci + (Mi + Ci-1)
-        key[0] = (result[0] ^ encrypted[0]) ^ encrypted[12];    // should be result[i] = encryptied[i-12] ^ decrypt(encrypted[i]);
-        key[1] = (result[1] ^ encrypted[1]) ^ encrypted[13];
-        key[2] = (result[2] ^ encrypted[2]) ^ encrypted[14];
-        key[3] = (result[3] ^ encrypted[3]) ^ encrypted[15];
-        key[4] = (result[4] ^ encrypted[4]) ^ encrypted[16];
-        key[5] = (result[5] ^ encrypted[5]) ^ encrypted[17];
-        key[6] = (result[6] ^ encrypted[6]) ^ encrypted[18];
-        key[7] = (result[7] ^ encrypted[7]) ^ encrypted[19];
-        key[8] = (result[8] ^ encrypted[8]) ^ encrypted[20];
-        key[9] = (result[9] ^ encrypted[9]) ^ encrypted[21];
-        key[10] = (result[10] ^ encrypted[10]) ^ encrypted[22];
-        key[11] = (result[11] ^ encrypted[11]) ^ encrypted[23];
+
+
+    key.push_back((result[0] ^ encrypted[0]) ^ encrypted[12]);
+    key.push_back((result[1] ^ encrypted[1]) ^ encrypted[13]);
+    key.push_back((result[2] ^ encrypted[2]) ^ encrypted[14]);
+    key.push_back((result[3] ^ encrypted[3]) ^ encrypted[15]);
+    key.push_back((result[4] ^ encrypted[4]) ^ encrypted[16]);
+    key.push_back((result[5] ^ encrypted[5]) ^ encrypted[17]);
+    key.push_back((result[6] ^ encrypted[6]) ^ encrypted[18]);
+    key.push_back((result[7] ^ encrypted[7]) ^ encrypted[19]);
+    key.push_back((result[8] ^ encrypted[8]) ^ encrypted[20]);
+    key.push_back((result[9] ^ encrypted[9]) ^ encrypted[21]);
+    key.push_back((result[10] ^ encrypted[10]) ^ encrypted[22]);
+    key.push_back((result[11] ^ encrypted[11]) ^ encrypted[23]);
 //        key[12] = (result[12] ^ encrypted[12]) ^ encrypted[i+12];
     
         
-        //        temp.push_back(encrypted[i]);  // appends element i from the vector encrypted to temp.
+//        temp.push_back(encrypted[i]);  // appends element i from the vector encrypted to temp.
     
     
     std::string key_str(key.begin(), key.end());
     std::cout << "Key: \n" << key_str <<std::endl;
     
+    std::cout << "encrypted.size(): \n" << encrypted.size() <<std::endl;
+    
+    // Ci = K + (Mi + Ci-1) --> Mi = (Ci + K) + Ci-1
     for(int i = 12; i<encrypted.size(); i = i + 12){
-        result[i] = result[i-12] ^ encrypted[i];    // should be result[i] = encryptied[i-12] ^ decrypt(encrypted[i]);
-        result[i+1] = result[i-11] ^ encrypted[i+1];
-        result[i+2] = result[i-10] ^ encrypted[i+2];
-        result[i+3] = result[i-9] ^ encrypted[i+3];
-        result[i+4] = result[i-8] ^ encrypted[i+4];
-        result[i+5] = result[i-7] ^ encrypted[i+5];
-        result[i+6] = result[i-6] ^ encrypted[i+6];
-        result[i+7] = result[i-5] ^ encrypted[i+7];
-        result[i+8] = result[i-4] ^ encrypted[i+8];
-        result[i+9] = result[i-3] ^ encrypted[i+9];
-        result[i+10] = result[i-2] ^ encrypted[i+10];
-        result[i+11] = result[i-1] ^ encrypted[i+11];
-//        result[i+12] = result[i] ^ encrypted[i+12];
-
-        
-//        temp.push_back(encrypted[i]);  // appends element i from the vector encrypted to temp.
+        result.push_back((encrypted[i+12] ^ key[0]) ^ encrypted[i]);
+        result.push_back((encrypted[i+13] ^ key[1]) ^ encrypted[i+1]);
+        result.push_back((encrypted[i+14] ^ key[2]) ^ encrypted[i+2]);
+        result.push_back((encrypted[i+15] ^ key[3]) ^ encrypted[i+3]);
+        result.push_back((encrypted[i+16] ^ key[4]) ^ encrypted[i+4]);
+        result.push_back((encrypted[i+17] ^ key[5]) ^ encrypted[i+5]);
+        result.push_back((encrypted[i+18] ^ key[6]) ^ encrypted[i+6]);
+        result.push_back((encrypted[i+19] ^ key[7]) ^ encrypted[i+7]);
+        result.push_back((encrypted[i+20] ^ key[8]) ^ encrypted[i+8]);
+        result.push_back((encrypted[i+21] ^ key[9]) ^ encrypted[i+9]);
+        result.push_back((encrypted[i+22] ^ key[10]) ^ encrypted[i+10]);
+        result.push_back((encrypted[i+23] ^ key[11]) ^ encrypted[i+11]);
     }
-    
-    
-    
-    
-//      ^ - XOR
-//      http://en.cppreference.com/w/cpp/container/vector vector help
-//    // Create a vector containing integers
-//    std::vector<int> v = {7, 5, 16, 8};
-//
-//    // Add two more integers to vector
-//    v.push_back(25);
-//    v.push_back(13);
-//
-//    // Iterate and print values of vector
-//    for(int n : v) {
-//        std::cout << n << '\n';
+//    for(int i = 12; i<encrypted.size(); i++){
+//        result.push_back((encrypted[(i % 12) + 12] ^ key[i % 12]) ^ encrypted[i]);
 //    }
-//
-    
-    
-    
-    
     
     
     // Work on the arrays (vectors) of bytes (unsigned chars).
