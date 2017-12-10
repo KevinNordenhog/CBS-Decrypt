@@ -17,7 +17,7 @@ std::string recoverMessage(
     
     std::vector<unsigned char> key;
 
-    //Ci = K + (Mi + Ci-1), --> K = Ci + (Mi + Ci-1)
+    //Ci = K ^ (Mi ^ Ci-1) --> K = Ci ^ (Mi ^ Ci-1)
     key.push_back((result[0] ^ encrypted[0]) ^ encrypted[12]);
     key.push_back((result[1] ^ encrypted[1]) ^ encrypted[13]);
     key.push_back((result[2] ^ encrypted[2]) ^ encrypted[14]);
@@ -34,7 +34,8 @@ std::string recoverMessage(
     std::string key_str(key.begin(), key.end());
     std::cout << "Key: \n" << key_str <<std::endl;
     
-    // Ci = K + (Mi + Ci-1) --> Mi = (Ci + K) + Ci-1
+//    Ci = K ^ (Mi ^ Ci-1) --> Mi = (Ci ^ K) ^ Ci-1
+//    The original solution which help me see (figure out) the shorter loop.
 //    for(int i = 12; i<encrypted.size(); i = i + 12){
 //        result.push_back((encrypted[i+12] ^ key[0]) ^ encrypted[i]);
 //        result.push_back((encrypted[i+13] ^ key[1]) ^ encrypted[i+1]);
@@ -49,6 +50,7 @@ std::string recoverMessage(
 //        result.push_back((encrypted[i+22] ^ key[10]) ^ encrypted[i+10]);
 //        result.push_back((encrypted[i+23] ^ key[11]) ^ encrypted[i+11]);
 //    }
+    
     for(int i = 12; i<encrypted.size(); i++){
         result.push_back((encrypted[(i + 12)] ^ key[i % 12]) ^ encrypted[i]);
     }
